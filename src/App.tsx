@@ -4,12 +4,13 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import BookGetaway from './views/BookGetaway';
 import Mygetaways from './views/Mygetaways';
 import Landing from './views/Landing'
 import Login from './views/Login';
+import BookGetaway from './views/BookGetaway';
 import Payment from './views/Payment';
 import Paid from './views/Paid';
+import Reservations from './views/Reservations';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -57,6 +58,7 @@ function App() {
           <Route path="/bookgetaway" element={<BookGetaway />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/paid" element={<Paid />} />
+          <Route path="/reservations" element={<Reservations />} />
         </Routes>
         <Footer/>
       </Router>
