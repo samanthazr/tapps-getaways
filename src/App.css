@@ -1,5 +1,10 @@
-#root {
-  max-width: 1280px;
+body, html, #root {
+  width: 100%;
   margin: 0;
   padding: 0;
+}
+
+.ItemCenter{
+  color: #fff;
+  text-align: center;
 }
