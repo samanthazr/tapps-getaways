@@ -10,7 +10,7 @@ import clubView1 from '../assets/backgrounds/clubView1.png';
 import '../App.css';
 import '../index.css';
 
-const LandingPage: React.FC = () => {
+const LandingPage = () => {
   return (
     <>
       <Box>

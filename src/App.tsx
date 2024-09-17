@@ -5,6 +5,7 @@ import Landing from './views/Landing'
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Login from './views/Login';
+import Mygetaways from './views/Mygetaways';
 function App() {
   return (
     <>
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/getaways" element={<Mygetaways />} />
         </Routes>
         <Footer/>
       </Router>
