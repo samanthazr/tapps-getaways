@@ -98,3 +98,9 @@ body, html, #root {
   height: 100%;
   z-index: -1; /* background content */
 }
+
+//navbar
+.view {
+  margin-top: 64px; 
+  padding: 20px;
+}

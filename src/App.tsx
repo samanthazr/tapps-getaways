@@ -1,11 +1,46 @@
 import './App.css'
 import './index.css'
+import CssBaseline from '@mui/material/CssBaseline';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
+import Mygetaways from './views/Mygetaways';
 import Landing from './views/Landing'
+import Login from './views/Login';
+
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Login from './views/Login';
-import Mygetaways from './views/Mygetaways';
+
+const lightTheme = createTheme({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#3C1392',
+    },
+    secondary: {
+      main: '#C9F305',
+    },
+    info: {
+      main: '#0288d1',
+    },
+    background: {
+      default: '#ffffff',
+      paper: '#E1F5F4',
+    },
+    divider: '#3C1C91',
+    text: {
+      secondary: '#3C1C91',
+      disabled: '#808080',
+    },
+  },
+  typography: {
+    fontFamily: 'Montserrat',
+  },
+  shape: {
+    borderRadius: 10,
+  },
+});
+
 function App() {
   return (
     <>
