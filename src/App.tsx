@@ -10,6 +10,7 @@ import Login from './views/Login';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import GetawayDetail from './components/GetawayDetail';
 
 const lightTheme = createTheme({
   palette: {
@@ -50,6 +51,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/getaways" element={<Mygetaways />} />
+          <Route path="/getawaydetail" element={<GetawayDetail />} />
         </Routes>
         <Footer/>
       </Router>

@@ -99,6 +99,42 @@ body, html, #root {
   z-index: -1; /* background content */
 }
 
+//getawayDetail
+.titleLeft{
+  margin: 0px;
+  padding-bottom: 7px;
+}
+
+.title5{
+  color: #3C1C91;
+  margin:0px;
+}
+.title4{
+  color: #3C1C91;
+  margin:0px;
+}
+
+.titleLeft{
+  margin: 0px;
+  padding-bottom: 7px;
+}
+
+//
+
+.inline{
+  display: inline-block;
+  /* 1px solid #000; */
+}
+.inline > h4 { display: inline-block;
+  color: #3C1C91;
+  margin:0px;
+
+} */
+
+.prices{
+  margin: 0px;
+}
+
 //navbar
 .view {
   margin-top: 64px; 

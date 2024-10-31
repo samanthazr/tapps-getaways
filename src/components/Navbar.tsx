@@ -48,7 +48,7 @@ function NavBar() {
 
   return (
     //CustomAppBar
-    <AppBar sx={{ backgroundColor: "#3C1C91" }}>
+    <AppBar sx={{ backgroundColor: "#3C1C91", }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* logo large */}

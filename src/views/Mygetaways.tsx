@@ -109,7 +109,7 @@ export default function MyGetaways() {
 
   return (
     <>
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} mt={8}>
         <AdminSideBar />
         <Grid size={{ xs:10 }} spacing={2} justifyContent="center" className="section blueBg">
           <Box>
