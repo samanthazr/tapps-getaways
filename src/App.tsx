@@ -4,6 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+import BookGetaway from './views/BookGetaway';
 import Mygetaways from './views/Mygetaways';
 import Landing from './views/Landing'
 import Login from './views/Login';
@@ -11,7 +12,6 @@ import Login from './views/Login';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import GetawayDetail from './components/GetawayDetail';
-
 const lightTheme = createTheme({
   palette: {
     mode: 'light',
@@ -52,6 +52,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/getaways" element={<Mygetaways />} />
           <Route path="/getawaydetail" element={<GetawayDetail />} />
+          <Route path="/bookgetaway" element={<BookGetaway />} />
         </Routes>
         <Footer/>
       </Router>
