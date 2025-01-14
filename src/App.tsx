@@ -8,6 +8,7 @@ import BookGetaway from './views/BookGetaway';
 import Mygetaways from './views/Mygetaways';
 import Landing from './views/Landing'
 import Login from './views/Login';
+import Payment from './views/Payment';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -53,6 +54,7 @@ function App() {
           <Route path="/getaways" element={<Mygetaways />} />
           <Route path="/getawaydetail" element={<GetawayDetail />} />
           <Route path="/bookgetaway" element={<BookGetaway />} />
+          <Route path="/payment" element={<Payment />} />
         </Routes>
         <Footer/>
       </Router>
