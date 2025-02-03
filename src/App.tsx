@@ -9,6 +9,7 @@ import Mygetaways from './views/Mygetaways';
 import Landing from './views/Landing'
 import Login from './views/Login';
 import Payment from './views/Payment';
+import Paid from './views/Paid';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -55,6 +56,7 @@ function App() {
           <Route path="/getawaydetail" element={<GetawayDetail />} />
           <Route path="/bookgetaway" element={<BookGetaway />} />
           <Route path="/payment" element={<Payment />} />
+          <Route path="/paid" element={<Paid />} />
         </Routes>
         <Footer/>
       </Router>
