@@ -1,10 +1,9 @@
-import React from 'react';
+// import React from 'react';
 import { Box, Button, Typography, Card, CardContent, CardMedia } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 
-import GetawaysLogo from '../components/GetawaysLogo/GetawaysLogo.png';
-import background1 from '../assets/backgrounds/lp.png';
-// import background1 from '../assets/backgrounds/tenis.jpg';
+import GetawaysLogo from '../components/GetawaysLogo/GetawaysLogo.jpg';
+import background1 from '../assets/backgrounds/tenis.jpg';
 import mapSample from '../assets/backgrounds/mapSample.png';
 import clubView1 from '../assets/backgrounds/clubView1.png';
 import '../App.css';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import GetawaysLogo from './GetawaysLogo/GetawaysLogo.png';
+import GetawaysLogo from './GetawaysLogo/GetawaysLogo.jpg';
 // import RcnetIcon from '../assets/RappsIcons/RCnet icon.png';
 import playerIcon from '../assets/RappsIcons/PlayersProfile.png';
 
