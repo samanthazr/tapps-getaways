@@ -11,6 +11,8 @@ import BookGetaway from './views/BookGetaway';
 import Payment from './views/Payment';
 import Paid from './views/Paid';
 import Reservations from './views/Reservations';
+import CreateGetaway from './views/CreateGetaway';
+
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -59,6 +61,10 @@ function App() {
           <Route path="/payment" element={<Payment />} />
           <Route path="/paid" element={<Paid />} />
           <Route path="/reservations" element={<Reservations />} />
+
+          <Route path="/creategetaway" element={
+            <CreateGetaway/>
+          } />
         </Routes>
         <Footer/>
       </Router>
