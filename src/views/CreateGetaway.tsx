@@ -3,7 +3,7 @@ import { useForm, Controller, useFieldArray, SubmitHandler } from 'react-hook-fo
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import { TextField, Button, Divider} from '@mui/material';
+import { TextField, Button, Divider, Card} from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Grid from '@mui/material/Grid2';
 
@@ -12,6 +12,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
 
 import AdminSidebar from '../components/AdminSidebar';
 
@@ -326,6 +327,34 @@ export default function CreateGetaway() {
                 <TextField {...field} label="Photo Caption (Optional)" fullWidth margin="normal" />
               )}
             />
+            <Card
+              sx={{
+                borderRadius: '8px',
+                mt: 2, mb: 0,  padding: '15px 15px', margin: '3 5px',
+                bgcolor: '#3C1C91', color: '#FFF', fontWeight: 'medium', textTransform: 'none',
+                // ':hover': { bgcolor: 'white', color: '#3C1C91' }
+              }}>
+              <h3 className='titleLeft'>Want your Getaways to stand out?</h3>
+              <p>We offer professional photography and video services to enhance the beauty of your facilities and capture the essence of your club.
+              Make your Getaways irresistible!
+              </p>
+              <Button
+                startIcon={<LightbulbIcon />}
+                type="submit"
+                href="https://racquetsappsuite.com/" target="_blank"
+                sx={{
+                  mb: 1,
+                  borderRadius: '8px',
+                  padding: '5px 15px',
+                  bgcolor: '#FFF', color: '#3C1C91', fontWeight: 'medium', textTransform: 'none',
+                  ':hover': { bgcolor: '#3C1C91', color: 'white' }
+                }}
+                disableElevation
+              >
+                Learn more
+              </Button>
+            </Card>
+
             <Divider sx={{ my: 1 }} />
             <h5>Services & amenities</h5>
             {amenityFields.map((field, index) => (
