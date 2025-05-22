@@ -19,6 +19,9 @@ import AdminSidebar from '../components/AdminSidebar';
 import AcademySchedule from '../components/AcademySchedule';
 import academy from '../assets/RappsIcons/academyLogo.svg';
 
+import tournamentsLogo from '../assets/RappsIcons/tournamentsLogo.svg';
+import TournamentsSchedule from '../components/TournamentsSchedule';
+
 import { styled } from '@mui/material/styles';
 const VisuallyHiddenInput = styled('input')({
   clip: 'rect(0 0 0 0)',
@@ -413,6 +416,12 @@ export default function CreateGetaway() {
             <p>Add this available Academy&trade; class sessions to your Getaway&trade; for selected dates</p>
             <AcademySchedule/>
             <br/>
+
+            <Divider textAlign="center" aria-hidden="true">
+                <img src={tournamentsLogo} style={{height:'36px'}} className="logo" alt="Racquets Tournaments Logo" />
+              </Divider>
+              <p>You can add this available Tournaments&trade; sessions in the Getaway&trade;</p>
+            <TournamentsSchedule/>
 
             <Divider sx={{ my: 2 }} />
             <Controller
