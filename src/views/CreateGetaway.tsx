@@ -1,4 +1,3 @@
-// import * as React from 'react';
 import { useForm, Controller, useFieldArray, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -15,16 +14,13 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 
 import AdminSidebar from '../components/AdminSidebar';
-
 import AcademySchedule from '../components/AcademySchedule';
-import academy from '../assets/RappsIcons/academyLogo.svg';
 
 import tournamentsLogo from '../assets/RappsIcons/tournamentsLogo.svg';
 import TournamentsSchedule from '../components/TournamentsSchedule';
 
 import laddersLogo from '../assets/RappsIcons/laddersLogo.svg';
 import LaddersSchedule from '../components/LaddersSchedule';
-
 
 import { styled } from '@mui/material/styles';
 const VisuallyHiddenInput = styled('input')({
@@ -144,9 +140,9 @@ export default function CreateGetaway() {
   };
 
   return (
-    <Grid container rowSpacing={1} columnSpacing={{ xs:1, sm:2}} sx={{ mt: 10 }}>
+    <Grid container rowSpacing={1} columnSpacing={{ xs:1, sm:2}} sx={{ mt:8 }}>
       <Grid size={{ xs:2 }}><AdminSidebar/></Grid>
-      <Grid size={{ xs:10 }} spacing={0} className='section blueBg' >
+      <Grid size={{ xs:10 }} className='section blueBg' >
         <h2 className='title'>Create getaway</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Controller
@@ -410,17 +406,9 @@ export default function CreateGetaway() {
                 ':hover': { bgcolor: '#3C1C91', color: 'white' }
               }}
               onClick={() => appendAmenity({ name: '' })}
-            >
-              Add item
-            </Button>
-
-            <Divider textAlign="center" aria-hidden="true">
-              <img src={academy} style={{height:'36px'}} className="logo" alt="Racquets Academy Logo" />
-            </Divider>
-            <p>Add this available Academy&trade; class sessions to your Getaway&trade; for selected dates</p>
+            > Add item </Button>
             <AcademySchedule/>
-            <br/>
-
+            
             <Divider textAlign="center" aria-hidden="true">
                 <img src={tournamentsLogo} style={{height:'36px'}} className="logo" alt="Racquets Tournaments Logo" />
               </Divider>
