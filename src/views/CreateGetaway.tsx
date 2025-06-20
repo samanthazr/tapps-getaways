@@ -16,10 +16,10 @@ import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import AdminSidebar from '../components/AdminSidebar';
 import AcademySchedule from '../components/AcademySchedule';
 
-import tournamentsLogo from '../assets/RappsIcons/tournamentsLogo.svg';
+// import tournamentsLogo from '../assets/RappsIcons/tournamentsLogo.svg';
 import TournamentsSchedule from '../components/TournamentsSchedule';
 
-import laddersLogo from '../assets/RappsIcons/laddersLogo.svg';
+// import laddersLogo from '../assets/RappsIcons/laddersLogo.svg';
 import LaddersSchedule from '../components/LaddersSchedule';
 
 import { styled } from '@mui/material/styles';
@@ -407,18 +407,9 @@ export default function CreateGetaway() {
               }}
               onClick={() => appendAmenity({ name: '' })}
             > Add item </Button>
-            <AcademySchedule/>
             
-            <Divider textAlign="center" aria-hidden="true">
-                <img src={tournamentsLogo} style={{height:'36px'}} className="logo" alt="Racquets Tournaments Logo" />
-              </Divider>
-              <p>You can add this available Tournaments&trade; sessions in the Getaway&trade;</p>
-            <TournamentsSchedule/><br/>
-
-            <Divider textAlign="center" aria-hidden="true">
-              <img src={laddersLogo} style={{height:'36px'}} className="logo" alt="Racquets Ladders Logo" />
-            </Divider>
-            <p>  You can add this available Ladders&trade; sessions in this Getaway&trade;</p>
+            <AcademySchedule/>
+            <TournamentsSchedule/>
             <LaddersSchedule/>
 
             <Controller

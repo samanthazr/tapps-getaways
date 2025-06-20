@@ -1,14 +1,16 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
+import { Box, Divider, Paper, Stack } from '@mui/material';
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import Stack from "@mui/material/Stack";
-export interface TournamentRow {
+
+import laddersLogo from '../assets/RappsIcons/laddersLogo.svg';
+//ladder row
+export interface LadderRow {
   id: number;
   tournamentName: string;
   location: string;
@@ -19,7 +21,7 @@ export interface TournamentRow {
   included: boolean;
 }
 
-const initialRows: TournamentRow[] = [
+const initialRows: LadderRow[] = [
   {
     id: 1,
     tournamentName: "Nombre Torneo",
@@ -59,8 +61,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function LaddersSchedule() {
-  const [rows, setRows] = React.useState<TournamentRow[]>(initialRows);
+export default function LaddersTable() {
+  const [rows, setRows] = React.useState<LadderRow[]>(initialRows);
 
   const handleIncludeChange = (id: number) => {
     setRows((prevRows) =>
@@ -71,39 +73,45 @@ export default function LaddersSchedule() {
   };
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell align="left">Ladder</StyledTableCell>
-            <StyledTableCell align="left">Price</StyledTableCell>
-            <StyledTableCell align="center">Include</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.id}>
-              <StyledTableCell component="th" scope="row">
-                <Stack direction="column" spacing={0.5}>
-                  <strong>{row.tournamentName} | {row.location}</strong>
-                  <span>Fechas: {row.dates}</span>
-                  <span>Tipo ranking: {row.rankingType}</span>
-                  <span>Modalidad: {row.modality}</span>
-                </Stack>
-              </StyledTableCell>
-              <StyledTableCell align="left">{row.price}</StyledTableCell>
-              <StyledTableCell align="center">
-                <input
-                  type="checkbox"
-                  checked={row.included}
-                  onChange={() => handleIncludeChange(row.id)}
-                  aria-label={`Include ${row.tournamentName}`}
-                />
-              </StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Box sx={{ width:'100%', margin:'25px 0' }}>
+      <Divider textAlign="center" aria-hidden="true">
+        <img src={laddersLogo} style={{height:'36px'}} className="logo" alt="Racquets Ladders Logo" />
+      </Divider>
+      <p>You can add this available Ladders&trade; sessions in this Getaway&trade;</p>
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth:700 }} aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="left">Ladders Tournament</StyledTableCell>
+              <StyledTableCell align="left">Price</StyledTableCell>
+              <StyledTableCell align="center">Include</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <StyledTableRow key={row.id}>
+                <StyledTableCell component="th" scope="row">
+                  <Stack direction="column" spacing={0.5}>
+                    <strong>{row.tournamentName} | {row.location}</strong>
+                    <span>Fechas: {row.dates}</span>
+                    <span>Tipo ranking: {row.rankingType}</span>
+                    <span>Modalidad: {row.modality}</span>
+                  </Stack>
+                </StyledTableCell>
+                <StyledTableCell align="left">{row.price}</StyledTableCell>
+                <StyledTableCell align="center">
+                  <input id={`ladderOption-${row.id}`} 
+                    type="checkbox"
+                    checked={row.included}
+                    onChange={() => handleIncludeChange(row.id)}
+                    aria-label={`Include ${row.tournamentName}`}
+                  />
+                </StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
   );
 }

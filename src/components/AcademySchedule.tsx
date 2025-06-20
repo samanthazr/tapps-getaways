@@ -80,13 +80,13 @@ export default function AcademyTable() {
   };
 
   return (
-    <Box sx={{ width: '100%', margin:'25px 0' }} >
+    <Box sx={{ width:'100%', margin:'25px 0' }} >
       <Divider textAlign="center" aria-hidden="true">
         <img src={academy} style={{height:'36px'}} className="logo" alt="Racquets Academy Logo" />
       </Divider>
       <p>Add this available Academy&trade; class sessions to your Getaway&trade; for selected dates</p>
       <TableContainer component={Paper} elevation={3}>
-        <Table aria-label="customized table" sx={{ minWidth: 700 }}>
+        <Table aria-label="customized table" sx={{ minWidth:700 }}>
           <TableHead>
             <TableRow>
               <StyledTableCell align="left">Weekday</StyledTableCell>
@@ -128,7 +128,7 @@ export default function AcademyTable() {
                 {/* <StyledTableCell align="left">{row.price}</StyledTableCell> */}
 
                 <StyledTableCell align="center">
-                  <input type="checkbox"
+                  <input type="checkbox" id={`academyOption-${row.id}`} 
                     checked={row.included}
                     onChange={() => handleIncludeChange(row.id)}
                   />
