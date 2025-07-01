@@ -11,7 +11,8 @@ import BookGetaway from './views/BookGetaway';
 import Payment from './views/Payment';
 import Paid from './views/Paid';
 import Reservations from './views/Reservations';
-import CreateGetaway from './views/CreateGetaway';
+// import CreateGetaway from './views/CreateGetaway';
+import CreateGetaway from './components/CreateGetaway';
 
 
 import Navbar from './components/Navbar';

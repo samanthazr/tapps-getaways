@@ -109,9 +109,9 @@ export default function MyGetaways() {
 
   return (
     <>
-      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }} mt={8}>
+      <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
         <AdminSideBar />
-        <Grid size={{ xs:10 }} spacing={2} justifyContent="center" className="section blueBg">
+        <Grid container spacing={2} size={{ xs:10 }} justifyContent="center" className="section blueBg">
           <Box>
             <center>
               <h2 className="title">My getaways</h2>

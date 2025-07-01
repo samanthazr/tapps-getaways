@@ -128,7 +128,7 @@ export default function AcademyTable() {
                 {/* <StyledTableCell align="left">{row.price}</StyledTableCell> */}
 
                 <StyledTableCell align="center">
-                  <input type="checkbox" id={`academyOption-${row.id}`} 
+                  <input type="checkbox" id={`academyOption-${row.id}`}
                     checked={row.included}
                     onChange={() => handleIncludeChange(row.id)}
                   />

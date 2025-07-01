@@ -2,7 +2,7 @@ import { useForm, Controller, useFieldArray, SubmitHandler } from 'react-hook-fo
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import { TextField, Button, Divider, Card} from '@mui/material';
+import { Box, TextField, Button, Divider, Typography, Card} from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Grid from '@mui/material/Grid2';
 
@@ -10,17 +10,17 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+// import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 
-import AdminSidebar from '../components/AdminSidebar';
+import AdminSidebar from './AdminSidebar';
+// import AdminSideBar from './AdminSideBar';
 import AcademySchedule from '../components/AcademySchedule';
-
-// import tournamentsLogo from '../assets/RappsIcons/tournamentsLogo.svg';
 import TournamentsSchedule from '../components/TournamentsSchedule';
-
-// import laddersLogo from '../assets/RappsIcons/laddersLogo.svg';
 import LaddersSchedule from '../components/LaddersSchedule';
+
+const ALPHANUMERIC_REGEX = /^[a-zA-Z0-9\s]*$/;
+// const YOUTUBE_VIMEO_REGEX = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|vimeo\.com\/)([a-zA-Z0-9_-]{11,})/;
 
 import { styled } from '@mui/material/styles';
 const VisuallyHiddenInput = styled('input')({
@@ -45,6 +45,7 @@ interface FormData {
   price: number;
   address: string;
   galleryPhoto: string;
+  galleryVideo?: string;
   caption?: string;
   amenities: { name: string }[];
   policies: string;
@@ -140,226 +141,205 @@ export default function CreateGetaway() {
   };
 
   return (
-    <Grid container rowSpacing={1} columnSpacing={{ xs:1, sm:2}} sx={{ mt:8 }}>
-      <Grid size={{ xs:2 }}><AdminSidebar/></Grid>
-      <Grid size={{ xs:10 }} className='section blueBg' >
-        <h2 className='title'>Create getaway</h2>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Controller
-              name="title"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Getaway title"
-                  fullWidth
-                  margin="dense"
-                  error={!!errors.title}
-                  helperText={errors.title?.message}
-                />
-              )}
-            />
-            <Controller
-              name="overview"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Overview description"
-                  fullWidth
-                  margin="dense"
-                  multiline
-                  maxRows={3}
-                  error={!!errors.overview}
-                  helperText={errors.overview?.message}
-                />
-              )}
-            />
-            <Controller
-              name="mainDescription"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Main description"
-                  fullWidth
-                  multiline
-                  maxRows={7}
-                  margin="normal"
-                  error={!!errors.mainDescription}
-                  helperText={errors.mainDescription?.message}
-                />
-              )}
-            />
-            <Grid container spacing={2}>
-              <Grid size={{ xs: 4 }}>
-                <Controller
-                  name="startDate"
-                  control={control}
-                  defaultValue=""
-                  render={({ field }) => (
-                    <TextField
-                      {...field}
-                      label="Start date"
-                      type="date"
-                      fullWidth
-                      margin="normal"
-                      InputLabelProps={{ shrink: true }}
-                      error={!!errors.startDate}
-                      helperText={errors.startDate?.message}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid size={{ xs: 4 }}>
-                <Controller
-                  name="endDate"
-                  control={control}
-                  defaultValue=""
-                  render={({ field }) => (
-                    <TextField
-                      {...field}
-                      label="End date"
-                      type="date"
-                      fullWidth
-                      margin="normal"
-                      InputLabelProps={{ shrink: true }}
-                      error={!!errors.endDate}
-                      helperText={errors.endDate?.message}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid size={{ xs: 4 }}>
-                <Controller
-                  name="sport"
-                  control={control}
-                  defaultValue="1"
-                  render={({ field }) => (
-                    <TextField
-                      {...field}
-                      select
-                      label="Sport"
-                      fullWidth
-                      margin="normal"
-                      error={!!errors.sport}
-                      helperText={errors.sport ? errors.sport.message : 'Please select the sport'}
-                    >
-                      {sports.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                          {option.label}
-                        </MenuItem>
-                      ))}
-                    </TextField>
-                  )}
-                />
-              </Grid>
-            </Grid>
-            <Controller
-              name="price"
-              control={control}
-              defaultValue={0}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Price"
-                  type="number"
-                  fullWidth
-                  margin="normal"
-                  error={!!errors.price}
-                  helperText={errors.price?.message}
-                />
-              )}
-            />
-            <Controller
-              name="address"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Address"
-                  fullWidth
-                  margin="normal"
-                  error={!!errors.address}
-                  helperText={errors.address?.message}
-                />
-              )}
-            />
+    <Grid container rowSpacing={1} columnSpacing={{ xs:1, sm:2}} >
+    <Grid size={{ xs:2 }}><AdminSidebar/></Grid>
+    <Grid size={{ xs:10 }} className='section blueBg'>
+      <h2 className='title'>Create getaway</h2>
+      <Box sx={{ width: 1000, maxWidth: '100%', padding: '7px' }}>
+        <form onSubmit={handleSubmit(onSubmit)}>
 
-            <Controller
-              name="galleryPhoto"
-              control={control}
-              defaultValue=""
-              rules={{ required: "Gallery photo is required" }}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Gallery Photo"
-                  fullWidth
-                  margin="normal"
-                  error={!!errors.galleryPhoto}
-                  // helperText={errors.galleryPhoto ? errors.galleryPhoto.message : ''}
-                  helperText="Maximum size 5 MB, recommended resolution: 1280x720px"
-                />
-              )}
-            />
-            <Button
-              component="label"
-              variant="contained"
-              startIcon={<CloudUploadIcon />}
-              sx={{
-                mb: 2, bgcolor: '#00E392', color: '#1A2660', fontWeight: 'bold', borderRadius: '30px', textTransform: 'none',
-                ':hover': { bgcolor: '#3C1C91', color: 'white' }
-              }}
-              disableElevation
-            >
-              Upload file
-              <VisuallyHiddenInput
-                type="file"
-                onChange={(event) => console.log(event.target.files)}
-                multiple
+          <Controller name="title" defaultValue=""
+            control={control}
+            rules={{
+              required: "Getaway title is required",
+              validate: (value?: string) =>
+                !value || ALPHANUMERIC_REGEX.test(value)
+                  ? true
+                  : "Only letters and numbers are allowed.",
+            }}
+            render={({ field }) => (
+              <TextField label="Getaway title" id="Getaway title" fullWidth margin="dense"
+                {...field}
+                error={!!errors.title}
+                helperText={errors.title ? errors.title.message : ''}
               />
-            </Button>
+            )}
+          />
+           
+          <Controller name="overview"
+            control={control}
+            defaultValue=""
+            rules={{
+              // required: "Overview description is required",
+              validate: (value?: string) =>
+                !value || ALPHANUMERIC_REGEX.test(value)
+                  ? true
+                  : "Only letters and numbers are allowed.",
+            }}
+            render={({ field }) => (
+              <TextField id={field.name} label="Overview description" fullWidth margin="dense" multiline maxRows={3}
+                {...field}
+                error={!!errors.overview}
+                helperText={errors.overview?.message || ''}
+              />
+            )}
+          />
 
+          <Grid container spacing={2}>
+            <Grid size={{ xs:4 }}>
+              <Controller name="startDate" defaultValue=""
+                control={control}
+                // rules={{ required: "Start date is required" }}
+                render={({ field }) => (
+                  <TextField label="Start date" type="date" fullWidth margin="normal"
+                    {...field}
+                    slotProps={{ inputLabel: { shrink: true } }}
+                    error={!!errors.startDate}
+                    helperText={errors.startDate ? errors.startDate.message : ''}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid size={{ xs:4 }}>
+              <Controller name="endDate" defaultValue=""
+                control={control}
+                rules={{
+                  // required: "End date is required",
+                  validate: (value) => {
+                    const start = control._formValues.startDate;
+                    if (!value || !start) return true;
+                    return new Date(start) < new Date(value) || "End date must be after start date";
+                  }
+                }}
+                render={({ field }) => (
+                  <TextField label="End date" fullWidth margin="normal"
+                    {...field}
+                    type="date"
+                    slotProps={{ inputLabel: { shrink: true } }}
+                    error={!!errors.endDate}
+                    helperText={errors.endDate ? errors.endDate.message : ''}
+                  />
+                )}
+              />
+            </Grid>
+            <Grid size={{ xs: 4 }}>
             <Controller
-              name="caption"
+              name="sport"
               control={control}
-              defaultValue=""
+              defaultValue="1"
+              rules={{
+                validate: (value?: string) =>
+                  !value || ALPHANUMERIC_REGEX.test(value)
+                    ? true
+                    : "Only letters and numbers are allowed.",
+              }}
               render={({ field }) => (
-                <TextField {...field} label="Photo Caption (Optional)" fullWidth margin="normal" />
+                <TextField
+                  id={field.name}
+                  // name={field.name}
+                  label="Sport"
+                  select
+                  fullWidth
+                  margin="normal"
+                  {...field}
+                  error={!!errors.sport}
+                  helperText={errors.sport ? errors.sport.message : 'Please select the sport'}
+                >
+                  {sports.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
               )}
             />
-            <Card
+            </Grid>
+          </Grid>
+
+            
+          <Controller name="caption" defaultValue=""
+            control={control}
+            rules={{
+              validate: (value?: string) =>
+                !value || ALPHANUMERIC_REGEX.test(value)
+                  ? true
+                  : "Only letters and numbers are allowed.",
+            }}
+            render={({ field }) => (
+              <TextField label="Photo Caption (Optional)" fullWidth margin="dense"
+                {...field}
+                error={!!errors.caption}
+                helperText={
+                  errors.caption
+                    ? errors.caption.message
+                    : "Only letters and numbers allowed."
+                }
+              />
+            )}
+          />
+
+         
+          {/* <Controller name="galleryVideo" defaultValue=""
+            control={control}
+            rules={{
+              // required: "Video link is required",
+              validate: (value: string) =>
+                value === "" ||
+                YOUTUBE_VIMEO_REGEX.test(value) ||
+                "Please enter a valid YouTube or Vimeo link",
+            }}
+            render={({ field }) => (
+              <TextField label="Youtube or Vimeo link (Optional)" fullWidth margin="dense"
+                {...field}
+                error={!!errors.galleryVideo}
+                helperText={
+                  errors.galleryVideo
+                    ? errors.galleryVideo.message
+                    : "Recommended resolution 1280x720px"
+                }
+              />
+            )}
+          /> */}
+
+          <Card
+            sx={{
+              borderRadius: '0 24px',
+              m: '20px 0', p: '20px 25px',
+              bgcolor: '#3C1C91', color: '#FFF', fontWeight: 'medium', textTransform: 'none',
+              ':hover': { bgcolor: '#300e8eff' }
+            }}>
+            <h3 className='titleLeft'>Want your Getaways to stand out?</h3>
+            <p>We offer professional photography and video services to enhance the beauty of your facilities and capture the essence of your club.
+            Make your Getaways irresistible!</p>
+            <Button startIcon={<LightbulbIcon />} href="https://racquetsappsuite.com/" target="_blank" disableElevation
               sx={{
-                borderRadius: '8px',
-                mt: 2, mb: 0,  padding: '15px 15px', margin: '3 5px',
-                bgcolor: '#3C1C91', color: '#FFF', fontWeight: 'medium', textTransform: 'none',
-                // ':hover': { bgcolor: 'white', color: '#3C1C91' }
-              }}>
-              <h3 className='titleLeft'>Want your Getaways to stand out?</h3>
-              <p>We offer professional photography and video services to enhance the beauty of your facilities and capture the essence of your club.
-              Make your Getaways irresistible!
-              </p>
-              <Button
-                startIcon={<LightbulbIcon />}
-                type="submit"
-                href="https://racquetsappsuite.com/" target="_blank"
-                sx={{
-                  mb: 1,
-                  borderRadius: '8px',
-                  padding: '5px 15px',
-                  bgcolor: '#FFF', color: '#3C1C91', fontWeight: 'medium', textTransform: 'none',
-                  ':hover': { bgcolor: '#3C1C91', color: 'white' }
-                }}
-                disableElevation
-              >
-                Learn more
-              </Button>
-            </Card>
+                mb: 1, padding: '5px 15px', borderRadius: '8px', bgcolor: '#FFF', color: '#3C1C91', fontWeight: 'medium', textTransform: 'none',
+                ':hover': { bgcolor: '#3C1C91', color: 'white'}
+              }}
+            > Learn more </Button>
+          </Card>
+
+           
+          <Typography variant="h6" color="#3C1C91" sx={{ m: '1 0', fontWeight:"bold"  }}> Getaway details </Typography>
+          <Divider aria-hidden="true"/>
+
+          <Controller name="mainDescription" defaultValue=""
+            control={control}
+            rules={{
+              // required: "Main description is required"
+              validate: (value?: string) =>
+                !value || ALPHANUMERIC_REGEX.test(value)
+                  ? true
+                  : "Only letters and numbers are allowed.",
+            }}
+            render={({ field }) => (
+              <TextField label="Main description" fullWidth multiline maxRows={7} margin="normal"
+                {...field}
+                error={!!errors.mainDescription}
+                helperText={errors.mainDescription ? errors.mainDescription.message : ''}
+              />
+            )}
+          />
 
             <Divider sx={{ my: 1 }} />
             <h5>Services & amenities</h5>
@@ -407,45 +387,8 @@ export default function CreateGetaway() {
               }}
               onClick={() => appendAmenity({ name: '' })}
             > Add item </Button>
-            
-            <AcademySchedule/>
-            <TournamentsSchedule/>
-            <LaddersSchedule/>
 
-            <Controller
-              name="policies"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Policies"
-                  fullWidth
-                  margin="normal"
-                  multiline
-                  maxRows={3}
-                  error={!!errors.policies}
-                  helperText={errors.policies?.message}
-                />
-              )}
-            />
-            <Controller
-              name="terms"
-              control={control}
-              defaultValue=""
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Terms"
-                  fullWidth
-                  margin="normal"
-                  multiline
-                  maxRows={7}
-                  error={!!errors.terms}
-                  helperText={errors.terms?.message}
-                />
-              )}
-            />
+
             <Divider sx={{ my: 2 }} />
             <h5>Lodging options</h5>
             {lodgingFields.map((field, index) => (
@@ -562,36 +505,67 @@ export default function CreateGetaway() {
               Add item
             </Button>
 
-            <Grid container display={{ xs: 'block', md: 'flex' }} alignItems="center" textAlign={{ xs: 'center', md: 'left' }} justifyContent="center" marginTop={'10px'} spacing={6}>
-              <Button
-                startIcon={<ArrowBackIcon />}
-                type="button"
-                href="/getaways"
-                variant="outlined"
+            <AcademySchedule/>
+            <TournamentsSchedule/>
+            <LaddersSchedule/>
+
+            <Controller name="policies" defaultValue=""
+              control={control}
+              // rules={{ required: "Policies are required" }}
+              render={({ field }) => (
+                <TextField label="Policies" fullWidth margin="normal" multiline maxRows={3}
+                  {...field}
+                  error={!!errors.policies}
+                  helperText={errors.policies ? errors.policies.message : ''}
+                />
+              )}
+            />
+            <Button type="submit" startIcon={<AddIcon />}       variant="contained" disableElevation
+              sx={{
+                mb: 2, bgcolor: '#00E392', color: '#1A2660', fontWeight: 'bold', borderRadius: '30px', textTransform: 'none',
+                ':hover': { bgcolor: '#3C1C91', color: 'white' }
+              }}
+            > Add item </Button>
+
+            <Controller name="terms" defaultValue=""
+              control={control}
+              // rules={{ required: "Terms are required" }}
+              render={({ field }) => (
+                <TextField label="Terms" multiline maxRows={7} fullWidth margin="normal"
+                  {...field}
+                  error={!!errors.terms}
+                  helperText={errors.terms ? errors.terms.message : ''}
+                />
+              )}
+            />
+            <Button type="submit" startIcon={<AddIcon />} variant="contained" disableElevation
+              sx={{
+                mb: 2, bgcolor: '#00E392', color: '#1A2660', fontWeight: 'bold', borderRadius: '30px', textTransform: 'none',
+                ':hover': { bgcolor: '#3C1C91', color: 'white' }
+              }}
+            > Add item </Button>
+
+            <Box style={{ display: 'flex', justifyContent: 'center', gap: 16, marginBottom: 5 }}>
+              <Button type="button"
+              // href="/MyGetaways"
+              href="/getaways"
+              startIcon={<ArrowBackIcon />} variant="outlined" disableElevation
                 sx={{
-                  mt: 2, mb: 5, borderRadius: '8px', padding: '5px 15px', margin: '5 15px',
-                  bgcolor: '#FFF', color: '#3C1C91', fontWeight: 'medium', textTransform: 'none',
+                  width:'135px', borderRadius: '8px', bgcolor: '#FFF', color: '#3C1C91', fontWeight: 'medium', textTransform: 'none',
                   ':hover': { bgcolor: '#3C1C91', color: 'white' }
                 }}
-                disableElevation
-              >
-                Retry
-              </Button>
-              <Button
-                startIcon={<SaveIcon />}
-                type="submit" variant="outlined"
-                // href="/getaways"
+              > Retry </Button>
+
+              <Button type="submit" startIcon={<SaveIcon />} variant="outlined"
+                href="/getaways"
                 sx={{
-                  mt: 2, mb: 5, borderRadius: '8px', padding: '5px 15px', margin: '5 5px',
-                  bgcolor: '#3C1C91', color: '#FFF', fontWeight: 'medium', textTransform: 'none',
+                  borderRadius: '8px', bgcolor: '#3C1C91', color: '#FFF', fontWeight: 'medium', textTransform: 'none',
                   ':hover': { bgcolor: 'white', color: '#3C1C91' }
                 }}
-                disableElevation
-              >
-                Save changes
-              </Button>
-            </Grid>
+              > Save changes </Button>
+            </Box>
           </form>
+        </Box>
       </Grid>
     </Grid>
   );
