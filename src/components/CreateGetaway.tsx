@@ -14,13 +14,13 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 
 import AdminSidebar from './AdminSidebar';
-// import AdminSideBar from './AdminSideBar';
+// import { GalleryPhotoInput } from "../components/GalleryPhotoInput";
 import AcademySchedule from '../components/AcademySchedule';
 import TournamentsSchedule from '../components/TournamentsSchedule';
 import LaddersSchedule from '../components/LaddersSchedule';
 
 const ALPHANUMERIC_REGEX = /^[a-zA-Z0-9\s]*$/;
-// const YOUTUBE_VIMEO_REGEX = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|vimeo\.com\/)([a-zA-Z0-9_-]{11,})/;
+const YOUTUBE_VIMEO_REGEX = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|vimeo\.com\/)([a-zA-Z0-9_-]{11,})/;
 
 import { styled } from '@mui/material/styles';
 const VisuallyHiddenInput = styled('input')({
@@ -147,7 +147,7 @@ export default function CreateGetaway() {
       <h2 className='title'>Create getaway</h2>
       <Box sx={{ width: 1000, maxWidth: '100%', padding: '7px' }}>
         <form onSubmit={handleSubmit(onSubmit)}>
-
+          
           <Controller name="title" defaultValue=""
             control={control}
             rules={{
@@ -165,7 +165,7 @@ export default function CreateGetaway() {
               />
             )}
           />
-           
+          
           <Controller name="overview"
             control={control}
             defaultValue=""
@@ -184,7 +184,7 @@ export default function CreateGetaway() {
               />
             )}
           />
-
+          
           <Grid container spacing={2}>
             <Grid size={{ xs:4 }}>
               <Controller name="startDate" defaultValue=""
@@ -256,30 +256,15 @@ export default function CreateGetaway() {
             </Grid>
           </Grid>
 
-            
-          <Controller name="caption" defaultValue=""
+          {/* <GalleryPhotoInput
+            name="galleryPhotos"
             control={control}
-            rules={{
-              validate: (value?: string) =>
-                !value || ALPHANUMERIC_REGEX.test(value)
-                  ? true
-                  : "Only letters and numbers are allowed.",
-            }}
-            render={({ field }) => (
-              <TextField label="Photo Caption (Optional)" fullWidth margin="dense"
-                {...field}
-                error={!!errors.caption}
-                helperText={
-                  errors.caption
-                    ? errors.caption.message
-                    : "Only letters and numbers allowed."
-                }
-              />
-            )}
-          />
+            multiple={true}
+            rules={{ required: "Photo is required" }}
+          /> */}
 
-         
-          {/* <Controller name="galleryVideo" defaultValue=""
+          
+          <Controller name="galleryVideo" defaultValue=""
             control={control}
             rules={{
               // required: "Video link is required",
@@ -299,8 +284,9 @@ export default function CreateGetaway() {
                 }
               />
             )}
-          /> */}
+          />
 
+           
           <Card
             sx={{
               borderRadius: '0 24px',
@@ -319,7 +305,6 @@ export default function CreateGetaway() {
             > Learn more </Button>
           </Card>
 
-           
           <Typography variant="h6" color="#3C1C91" sx={{ m: '1 0', fontWeight:"bold"  }}> Getaway details </Typography>
           <Divider aria-hidden="true"/>
 
@@ -514,13 +499,13 @@ export default function CreateGetaway() {
               // rules={{ required: "Policies are required" }}
               render={({ field }) => (
                 <TextField label="Policies" fullWidth margin="normal" multiline maxRows={3}
-                  {...field}
+                  {...field} id={field.name}
                   error={!!errors.policies}
                   helperText={errors.policies ? errors.policies.message : ''}
                 />
               )}
             />
-            <Button type="submit" startIcon={<AddIcon />}       variant="contained" disableElevation
+            <Button type="submit" startIcon={<AddIcon />} variant="contained" disableElevation
               sx={{
                 mb: 2, bgcolor: '#00E392', color: '#1A2660', fontWeight: 'bold', borderRadius: '30px', textTransform: 'none',
                 ':hover': { bgcolor: '#3C1C91', color: 'white' }
@@ -532,7 +517,7 @@ export default function CreateGetaway() {
               // rules={{ required: "Terms are required" }}
               render={({ field }) => (
                 <TextField label="Terms" multiline maxRows={7} fullWidth margin="normal"
-                  {...field}
+                  {...field} id={field.name}
                   error={!!errors.terms}
                   helperText={errors.terms ? errors.terms.message : ''}
                 />
