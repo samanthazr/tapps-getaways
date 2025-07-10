@@ -10,11 +10,10 @@ import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-// import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 
 import AdminSidebar from './AdminSidebar';
-// import { GalleryPhotoInput } from "../components/GalleryPhotoInput";
+import { GalleryPhotoInput } from "../components/GalleryPhotoInput";
 import AcademySchedule from '../components/AcademySchedule';
 import TournamentsSchedule from '../components/TournamentsSchedule';
 import LaddersSchedule from '../components/LaddersSchedule';
@@ -44,7 +43,7 @@ interface FormData {
   sport: string;
   price: number;
   address: string;
-  galleryPhoto: string;
+  // galleryPhoto: string;
   galleryVideo?: string;
   caption?: string;
   amenities: { name: string }[];
@@ -114,6 +113,9 @@ export default function CreateGetaway() {
     formState: { errors }
   } = useForm<FormData>({
     defaultValues: {
+      title: "",
+      overview: "",
+      // galleryPhotos: null,
       amenities: [{ name: '' }],
       lodgingOptions: [{ name: '' }],
       optionalAddOns: [{ name: '', price: 0 }]
@@ -147,7 +149,7 @@ export default function CreateGetaway() {
       <h2 className='title'>Create getaway</h2>
       <Box sx={{ width: 1000, maxWidth: '100%', padding: '7px' }}>
         <form onSubmit={handleSubmit(onSubmit)}>
-          
+           
           <Controller name="title" defaultValue=""
             control={control}
             rules={{
@@ -165,7 +167,7 @@ export default function CreateGetaway() {
               />
             )}
           />
-          
+           
           <Controller name="overview"
             control={control}
             defaultValue=""
@@ -184,7 +186,7 @@ export default function CreateGetaway() {
               />
             )}
           />
-          
+           
           <Grid container spacing={2}>
             <Grid size={{ xs:4 }}>
               <Controller name="startDate" defaultValue=""
@@ -256,12 +258,33 @@ export default function CreateGetaway() {
             </Grid>
           </Grid>
 
-          {/* <GalleryPhotoInput
+          <GalleryPhotoInput
             name="galleryPhotos"
             control={control}
             multiple={true}
             rules={{ required: "Photo is required" }}
-          /> */}
+          />
+
+          <Controller name="caption" defaultValue=""
+            control={control}
+            rules={{
+              validate: (value?: string) =>
+                !value || ALPHANUMERIC_REGEX.test(value)
+                  ? true
+                  : "Only letters and numbers are allowed.",
+            }}
+            render={({ field }) => (
+              <TextField label="Photo Caption (Optional)" fullWidth margin="dense"
+                {...field}
+                error={!!errors.caption}
+                helperText={
+                  errors.caption
+                    ? errors.caption.message
+                    : "Only letters and numbers allowed."
+                }
+              />
+            )}
+          />
 
           
           <Controller name="galleryVideo" defaultValue=""
@@ -305,6 +328,7 @@ export default function CreateGetaway() {
             > Learn more </Button>
           </Card>
 
+           
           <Typography variant="h6" color="#3C1C91" sx={{ m: '1 0', fontWeight:"bold"  }}> Getaway details </Typography>
           <Divider aria-hidden="true"/>
 
