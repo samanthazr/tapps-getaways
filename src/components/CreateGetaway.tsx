@@ -12,6 +12,10 @@ import SaveIcon from '@mui/icons-material/Save';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 
+import { ScheduleForm } from '../components/ScheduleForm';
+// import { GetawayFormData, ScheduleRow } from '../types/getaway';
+// import { mapScheduleRowsToApiFormat } from '../utils/dataMappers';
+
 import AdminSidebar from './AdminSidebar';
 import { GalleryPhotoInput } from "../components/GalleryPhotoInput";
 import AcademySchedule from '../components/AcademySchedule';
@@ -186,7 +190,7 @@ export default function CreateGetaway() {
               />
             )}
           />
-           
+
           <Grid container spacing={2}>
             <Grid size={{ xs:4 }}>
               <Controller name="startDate" defaultValue=""
@@ -514,6 +518,7 @@ export default function CreateGetaway() {
               Add item
             </Button>
 
+            {/* <ScheduleForm rows={scheduleRows} setRows={setScheduleRows} /> */}
             <AcademySchedule/>
             <TournamentsSchedule/>
             <LaddersSchedule/>
