@@ -12,7 +12,7 @@ import Payment from './views/Payment';
 import Paid from './views/Paid';
 import Reservations from './views/Reservations';
 import CreateGetaway from './components/CreateGetaway';
-
+// import { ErrorBoundary } from "./components/ErrorBoundary";
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -50,24 +50,26 @@ const lightTheme = createTheme({
 function App() {
   return (
     <>
-      <Router>
-        <Navbar/>
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/getaways" element={<Mygetaways />} />
-          <Route path="/getawaydetail" element={<GetawayDetail />} />
-          <Route path="/bookgetaway" element={<BookGetaway />} />
-          <Route path="/payment" element={<Payment />} />
-          <Route path="/paid" element={<Paid />} />
-          <Route path="/reservations" element={<Reservations />} />
+      {/* <ErrorBoundary> */}
+        <Router>
+          <Navbar/>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/getaways" element={<Mygetaways />} />
+            <Route path="/getawaydetail" element={<GetawayDetail />} />
+            <Route path="/bookgetaway" element={<BookGetaway />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/paid" element={<Paid />} />
+            <Route path="/reservations" element={<Reservations />} />
 
-          <Route path="/creategetaway" element={
-            <CreateGetaway/>
-          } />
-        </Routes>
-        <Footer/>
-      </Router>
+            <Route path="/creategetaway" element={
+              <CreateGetaway/>
+            } />
+          </Routes>
+          <Footer/>
+        </Router>
+      {/* </ErrorBoundary> */}
     </>
   )
 }

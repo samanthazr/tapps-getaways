@@ -13,11 +13,9 @@ export default function AdminSideBar() {
         <Box
           sx={{
             display: 'flex', flexDirection: 'column',
-            alignItems: 'flex-start',
-            minWidth: 150,
-            mt: 2.6,
-            ml: 2.3,
-            // padding: '10px 0px 0px 0px',
+            alignItems: 'center',
+            minWidth: 190,
+            mt: 2.6
           }}>
           <Button
             type="link"
@@ -26,11 +24,11 @@ export default function AdminSideBar() {
             href="/my_getaways"
             sx={{
               mb: 2, padding: '5px 0px',
-              width: '170px',
+              width: '160px',
               bgcolor: '#3C1C91', color: '#FFF', borderRadius:'8px', fontWeight: 'medium', textTransform: 'none'
             }}
           >
-            <IconButton aria-label="add" sx={{ color:"#C9F305", pl: '0'}} ><SportsTennisIcon/></IconButton>
+            <IconButton aria-label="add" sx={{ color:"#C9F305", pl: '0' }} ><SportsTennisIcon/></IconButton>
             My getaways
           </Button>
           <Button
@@ -39,7 +37,7 @@ export default function AdminSideBar() {
             variant="contained"
             href="/creategetaway"
             sx={{
-              width: '170px',
+              width: '160px',
               mb: 2, padding: '5px 0px',
               bgcolor: '#3C1C91', color: '#FFF', borderRadius:'8px', fontWeight: 'medium', textTransform: 'none'
             }}

@@ -150,7 +150,7 @@ export function ScheduleForm({ rows, setRows }: ScheduleFormProps) {
         <Table sx={{ minWidth: 500 }}>
           <TableHead>
             <StyledTableRow>
-              <StyledTableCell sx={{ p:'1 0 1 1', width:'145px'}}> Day </StyledTableCell>
+              <StyledTableCell sx={{ p:'1 0 1 1', width:'90px', minWidth:'90px',}}> Day </StyledTableCell>
               <StyledTableCell sx={{ p:'0', pl:1, width: '110px' }}> Start time </StyledTableCell>
               <StyledTableCell sx={{ p:'0', minWidth: '50px' }}> End time </StyledTableCell>
               <StyledTableCell sx={{ p:'0', minWidth: '150px'}}> Activity </StyledTableCell>
@@ -166,8 +166,8 @@ export function ScheduleForm({ rows, setRows }: ScheduleFormProps) {
                 <StyledTableCell sx={{ p:'0 2px 0 10px' }} >
                   <FormControl fullWidth size="small" error={!!(touched[idx] && errors[idx]?.day)}>
                     {/* <InputLabel id={`day-label-${idx}`}>  Day </InputLabel> */}
-                    <Select name="day" sx={{ minWidth: 129, pr:'0' }}
-                      // label="Day"
+                    <Select name="day" sx={{ width: 132, pr:'0' }}
+                      label="Day"
                       labelId={`day-label-${idx}`}
                       value={form.day}
                       onChange={e => handleFormChange(idx, e)}
@@ -308,10 +308,12 @@ export function ScheduleForm({ rows, setRows }: ScheduleFormProps) {
                   />
                 </StyledTableCell>
                 <StyledTableCell sx={{ pl:'0' }} align="center">
-                  <Button variant="contained" color="primary" size="small" aria-label="save" sx={{ borderRadius:'20px', textTransform:'none', fontWeight:'bold'}}
+                  <Button variant="contained" color="primary" size="small" aria-label="save"
+                    sx={{ borderRadius:'20px', textTransform:'none', fontWeight:'bold', bgcolor: '#3C1C91',  color: '#fff', ':hover': { color: '#3C1C91', bgcolor: '#fff'}}}
                     onClick={() => handleConfirmFormRow(idx)}
                   > Save </Button>
-                  {/* <IconButton onClick={() => handleRemoveFormRow(idx)} aria-label="add">
+                  {/* <IconButton onClick={() => handleRemoveFormRow(idx)} aria-label="delete"> */}
+                  {/* <IconButton onClick={() => handleRemoveRow(idx)} aria-label="delete">
                     <DeleteIcon/>
                   </IconButton> */}
                 </StyledTableCell>
