@@ -16,11 +16,14 @@ import { GalleryPhotoInput } from "../components/GalleryPhotoInput";
 import AcademySchedule from '../components/AcademySchedule';
 import TournamentsSchedule from '../components/TournamentsSchedule';
 import LaddersSchedule from '../components/LaddersSchedule';
+import { AddressAutocompleteField } from '../components/AddressAutocompleteField';
 
 import { ScheduleForm } from '../components/ScheduleForm';
 import { GetawayFormData, ScheduleRow } from '../types/getaway';
 import { mapScheduleRowsToApiFormat } from '../utils/dataMappers';
 import { handleGetawaySubmit } from '../services/getawayApi';
+import { useAppConfig } from "../contexts/AppConfigContext";
+
 
 import { styled } from '@mui/material/styles';
 const VisuallyHiddenInput = styled('input')({
@@ -44,6 +47,7 @@ const sports = [
 ];
 
 export default function CreateGetaway() {
+  const { googleMapsApiKey } = useAppConfig();
   const { handleSubmit, control, formState: { errors } } = useForm<GetawayFormData>({
     defaultValues: {
       title: "",
@@ -239,6 +243,12 @@ export default function CreateGetaway() {
               </Grid>
             </Grid>
 
+            <AddressAutocompleteField
+              control={control}
+              name="getawayAddress"
+              apiKey={googleMapsApiKey}
+            />
+
             <GalleryPhotoInput
               name="galleryPhotos"
               control={control}
@@ -327,7 +337,7 @@ export default function CreateGetaway() {
               )}
             />
 
-            <Typography variant="h6" color="#3C1C91" sx={{ m: '1 0', fontSize: '14px', fontWeight:"bold"  }}> Lodging options </Typography>
+            <Typography variant="h6" color="#3C1C91" sx={{ m: '1 0', fontSize: '14px', fontWeight:"bold"  }}> Lodging options(Single or double occupancy)</Typography>
             <Divider aria-hidden="true"/>
             {lodgingFields.map((field, index) => (
               <div key={field.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'start' }} >
