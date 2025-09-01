@@ -31,11 +31,7 @@ export interface GetawayFormData {
   startDate: string;
   endDate: string;
   sport: string;
-  getawayAddress: {
-    address: string;
-    lat: number | null;
-    lng: number | null;
-  };
+  getawayAddress: LocationEntry;
   galleryPhotos: File[] | null;
   caption?: string;
   galleryVideo: string;

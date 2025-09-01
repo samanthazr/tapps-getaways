@@ -24,7 +24,6 @@ interface GooglePlaceAutocompleteElement extends HTMLElement {
 
 //global declaration for JSX:
 //eslint-disable-next-line @typescript-eslint/no-namespace
-
 declare global {
   namespace JSX {
     interface IntrinsicElements {
@@ -33,8 +32,15 @@ declare global {
   }
 }
 
-const validateAddress = (value: LocationEntry | undefined | null) => {
-  return (!!value && value.address.trim() !== "") || `Address is required`;
+const validateInput = (value: LocationEntry | undefined | null): boolean | string => {
+  if (!value || !value.address) {
+    return true;
+  }
+
+  if (/<|>/.test(value.address)) {
+    return "Invalid characters are not allowed.";
+  }
+  return true;
 };
 
 type AddressAutocompleteFieldProps<T extends FieldValues> = {
@@ -60,7 +66,7 @@ export function AddressAutocompleteField<T extends FieldValues>({
   const { field, fieldState: { error } } = useController({
     name,
     control,
-    rules: { validate: validateAddress },
+    rules: { validate: validateInput }
   });
 
   useEffect(() => {

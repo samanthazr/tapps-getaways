@@ -13,7 +13,7 @@ import Paid from './views/Paid';
 import Reservations from './views/Reservations';
 import CreateGetaway from './components/CreateGetaway';
 
-// import { ErrorBoundary } from "./components/ErrorBoundary";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AppConfigProvider } from "./contexts/AppConfigContext";
 
 import Navbar from './components/Navbar';
@@ -52,7 +52,7 @@ const lightTheme = createTheme({
 function App() {
   return (
     <>
-      {/* <ErrorBoundary> */}
+      <ErrorBoundary>
         <AppConfigProvider>
           <Router>
             <Navbar/>
@@ -73,7 +73,7 @@ function App() {
             <Footer/>
           </Router>
         </AppConfigProvider>
-      {/* </ErrorBoundary> */}
+      </ErrorBoundary>
     </>
   )
 }
