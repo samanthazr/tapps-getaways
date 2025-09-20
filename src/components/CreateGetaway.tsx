@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { useForm, Controller, useFieldArray, SubmitHandler } from 'react-hook-form';
+import { useFormData } from '../contexts/FormDataContext';
+import { useNavigate } from 'react-router-dom';
 
 import { Box, TextField, Button, Divider, Typography, Card} from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
@@ -38,7 +40,7 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 
-const ALPHANUMERIC_REGEX = /^[a-zA-Z0-9\s]*$/;
+const ALPHANUMERIC_REGEX = /^[a-zA-Z0-9\s,._'-]*$/;
 const YOUTUBE_VIMEO_REGEX = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|vimeo\.com\/)([a-zA-Z0-9_-]{11,})/;
 const sports = [
   { value: '1', label: 'Tennis' },
@@ -48,20 +50,22 @@ const sports = [
 
 export default function CreateGetaway() {
   const { googleMapsApiKey } = useAppConfig();
+  // const { setFormData } = useFormData();
+  const { setSubmissionData } = useFormData();
+  const navigate = useNavigate();
+
   const { handleSubmit, control, formState: { errors } } = useForm<GetawayFormData>({
     defaultValues: {
       title: "",
       overview: "",
-      // getawayAddress: { address: "", lat: null, lng: null },
-      galleryPhotos: null,
+      getawayAddress: { address: "", lat: null, lng: null },
+      galleryPhotos: [],
       lodgingOptions: [{ name: "", price: 0 }],
       optionalAddOns: [{ name: "", price: 0 }],
       amenities: [{ name: "" }],
       schedule: [],
     }
   });
-
-  // const navigate = useNavigate();
 
   const { fields: amenityFields, append: appendAmenity, remove: removeAmenity } = useFieldArray({
     control,
@@ -81,7 +85,6 @@ export default function CreateGetaway() {
   const [scheduleRows, setScheduleRows] = React.useState<ScheduleRow[]>([]);
   const [scheduleError, setScheduleError] = React.useState<string | null>(null);
 
-  // const onSubmit: SubmitHandler<FormData> = (data) => {
   const onSubmit: SubmitHandler<GetawayFormData> = async (data) => {
     if (scheduleRows.length === 0) {
       setScheduleError("You must add at least one schedule row.");
@@ -92,36 +95,13 @@ export default function CreateGetaway() {
     const apiSchedule = mapScheduleRowsToApiFormat(scheduleRows);
     const payload: GetawayFormData = {
       ...data,
-      // title: data.title,
-      // overview: data.overview,
-      // startDate: data.startDate,
-      // endDate: data.endDate,
-      // sport: data.sport,
-      // mainDescription: data.mainDescription,
-      // policies: data.policies,
-      // terms: data.terms,
-      // lodgingOptions: data.lodgingOptions,
-      // optionalAddOns: data.optionalAddOns,
-      // amenities: data.amenities,
-      // caption: data.caption,
-      // galleryVideo: data.galleryVideo,
-      // getawayAddress: data.getawayAddress,
-      schedule: apiSchedule,
-
-      // `galleryPhotos` array validation
-      // galleryPhotos: Array.isArray(data.galleryPhotos)
-      //   ? data.galleryPhotos as File[]
-      //   : data.galleryPhotos ? [data.galleryPhotos as File] : null,
+      schedule: apiSchedule
     };
-    const success = await handleGetawaySubmit(payload);
-
-    if (success) {
-      // navigate('/getaways');
-    } else {
-      console.error("Failed to submit getaway");
-    }
-    console.log(data);
+    const result = await handleGetawaySubmit(payload);
+    setSubmissionData(result);
+    navigate('/data-view');
   };
+
   React.useEffect(() => {
     if (scheduleRows.length > 0 && scheduleError) {
       setScheduleError(null);
@@ -138,7 +118,7 @@ export default function CreateGetaway() {
             <Controller name="title" defaultValue=""
               control={control}
               rules={{
-                required: "Getaway title is required",
+                // required: "Getaway title is required",
                 validate: (value?: string) =>
                   !value || ALPHANUMERIC_REGEX.test(value)
                     ? true
@@ -253,7 +233,7 @@ export default function CreateGetaway() {
               name="galleryPhotos"
               control={control}
               multiple={true}
-              rules={{ required: "Photo is required" }}
+              // rules={{ required: "Photo is required" }}
             />
 
             <Controller name="caption" defaultValue=""

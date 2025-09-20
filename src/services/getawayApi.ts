@@ -1,4 +1,5 @@
 import type { GetawayFormData } from '../types/getaway';
+import type { SubmissionResult } from '../contexts/FormDataContext';
 
 const API_URL = "/api/getaways";
 async function isBackendAvailable(url: string): Promise<boolean> {
@@ -10,7 +11,7 @@ async function isBackendAvailable(url: string): Promise<boolean> {
   }
 }
 
-export async function handleGetawaySubmit(payload: GetawayFormData): Promise<boolean> {
+export async function handleGetawaySubmit(payload: GetawayFormData): Promise<SubmissionResult> {
   const backendAvailable = await isBackendAvailable(API_URL);
   if (backendAvailable) {
     const apiFormData = new FormData();
@@ -32,33 +33,23 @@ export async function handleGetawaySubmit(payload: GetawayFormData): Promise<boo
         body: apiFormData,
       });
 
-      if (!response.ok) {
+      if (response.ok) {
+        return { payload, status: 'SUCCESS', statusCode: response.status };
+      } else {
         console.error("API Error:", response.status, await response.text());
-        alert("Error sending getaway");
-        return false;
+        return { payload, status: 'API_ERROR', statusCode: response.status };
       }
-
-      alert("Getaway sent successfully");
-      return true;
-
     } catch (error) {
       console.error("Network or submission error:", error);
-      alert("Error sending getaway");
-      return false;
+      return { payload, status: 'NETWORK_ERROR', statusCode: null };
     }
   } else {
-    console.warn("Backend no disponible, payload a enviar:");
-    console.log(payload);
-    const localPayload = {
-      ...payload,
-      //photosMetadata
-      galleryPhotos: payload.galleryPhotos
-        ? payload.galleryPhotos.map(f => ({ name: f.name, size: f.size, type: f.type }))
-        : [],
-    };
-    const existing = JSON.parse(localStorage.getItem('getaways') || '[]');
-    localStorage.setItem('getaways', JSON.stringify([...existing, localPayload]));
-    alert("Backend unvailable. Getaway saved locally (metadata only). Check console for the full payload.");
-    return true;
+    console.warn("Unavailable Backend, payload saved on localStorage.");
+    // console.log(payload);
+    localStorage.setItem('getaways', JSON.stringify([
+      ...JSON.parse(localStorage.getItem('getaways') || '[]'),
+      payload
+    ]));
+    return { payload, status: 'LOCAL_SAVE', statusCode: null };
   }
 }
