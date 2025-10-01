@@ -1,42 +1,142 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+body, html, #root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.ItemCenter{
+  color: #fff;
   text-align: center;
 }
+.title{
+  color: #3C1C91;
+  text-align: center;
+}
+.title2{
+  color: #fff;
+  text-align: center;
+}
+.section{
+  padding: 30px;
+  justify-content: center;
+}
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.cards{
+  display: flex;
+  flex-direction: 'row';
+  margin: 0 10px;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.purpBtn2{
+  color: #C9F305;
+  /* text-align: center; */
+  background-color: #3C1C91;
+  font-weight: bold;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.blueBg{
+  background-color: #E1F5F4;
 }
+.rcnets{
+  padding: 30px 0;
+}
+.label {
+  color: #3C1C91;
+  font-size: 16px;
+  font-weight: bold;
+}
+.benefits{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  align-content: center;
+  justify-content: center;
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+  color: #fff;
+  background-color: #3C1C91;
+  marginTop: 20px;
+  padding: 30px;
+  h5{
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #3C1C91;
   }
-  to {
-    transform: rotate(360deg);
+  Button{
+    color: #3C1C91;
+    text-align: center;
   }
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.benefitsSection{
+  background-color: #3C1C91;
+  marginTop: 20px;
+  padding: 20px;
+}
+.benefitsCards{
+  display: flex;
+  flex-direction: 'row';
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+.benefitsCards2{
+  margin: 0 10px;
+  max-width: 400px;
 }
 
-.card {
-  padding: 2em;
+//login
+.background-container {
+  background-image: url('./assets/backgrounds/RappsCourtsCOLLAGEdarker.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* background content */
 }
 
-.read-the-docs {
-  color: #888;
+//getawayDetail
+.titleLeft{
+  margin: 0px;
+  padding-bottom: 7px;
+}
+
+.title5{
+  color: #3C1C91;
+  margin:0px;
+}
+.title4{
+  color: #3C1C91;
+  margin:0px;
+}
+
+.titleLeft{
+  margin: 0px;
+  padding-bottom: 7px;
+}
+
+//
+
+.inline{
+  display: inline-block;
+  /* 1px solid #000; */
+}
+.inline > h4 { display: inline-block;
+  color: #3C1C91;
+  margin:0px;
+
+} */
+
+.prices{
+  margin: 0px;
+}
+
+//navbar
+.view {
+  margin-top: 64px; 
+  padding: 20px;
 }
