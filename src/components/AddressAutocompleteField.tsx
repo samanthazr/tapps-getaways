@@ -18,7 +18,7 @@ interface CustomPlace {
 }
 
 interface GooglePlaceAutocompleteElement extends HTMLElement {
-   place: CustomPlace | null;
+  place: CustomPlace | null;
   value: string;
 }
 
@@ -152,7 +152,7 @@ export function AddressAutocompleteField<T extends FieldValues>({
 
   return (
     <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap'}}>
-      <Box sx={{ width: '85%'}}>
+      <Box sx={{ width: '82%'}}>
         <FormLabel htmlFor={name} error={!!error}>{label}</FormLabel>
         <gmp-place-autocomplete
           ref={(el: GooglePlaceAutocompleteElement | null) => {

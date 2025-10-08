@@ -15,7 +15,7 @@ import * as yup from 'yup';
 
 const defaultTheme = createTheme();
 
-// Define validation schema using yup
+// validation schema with yup
 const schema = yup.object().shape({
   email: yup
     .string()
@@ -29,8 +29,6 @@ const schema = yup.object().shape({
     .min(6, 'Password must be at least 6 characters')
     .required('Password is required'),
 });
-
-// Define interface for form input
 interface LoginInput {
   email: string;
   password: string;

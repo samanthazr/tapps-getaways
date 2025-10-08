@@ -26,20 +26,6 @@ import { mapScheduleRowsToApiFormat } from '../utils/dataMappers';
 import { handleGetawaySubmit } from '../services/getawayApi';
 import { useAppConfig } from "../contexts/AppConfigContext";
 
-
-import { styled } from '@mui/material/styles';
-const VisuallyHiddenInput = styled('input')({
-  clip: 'rect(0 0 0 0)',
-  clipPath: 'inset(50%)',
-  height: 1,
-  overflow: 'hidden',
-  position: 'absolute',
-  bottom: 0,
-  left: 0,
-  whiteSpace: 'nowrap',
-  width: 1,
-});
-
 const ALPHANUMERIC_REGEX = /^[a-zA-Z0-9\s,._'-]*$/;
 const YOUTUBE_VIMEO_REGEX = /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/|vimeo\.com\/)([a-zA-Z0-9_-]{11,})/;
 const sports = [
